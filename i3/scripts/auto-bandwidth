@@ -1,0 +1,57 @@
+#!/bin/bash
+
+# Auto-detect active interface
+IFACE=$(ip route | awk '/default/ {print $5}' | head -n 1)
+
+if [ -z "$IFACE" ]; then
+    echo "No Network"
+    exit 0
+fi
+
+# Read current traffic
+RX_CUR=$(cat /sys/class/net/"$IFACE"/statistics/rx_bytes 2>/dev/null || echo 0)
+TX_CUR=$(cat /sys/class/net/"$IFACE"/statistics/tx_bytes 2>/dev/null || echo 0)
+
+# Set up temp files in RAM
+RX_TMP="/dev/shm/i3_rx"
+TX_TMP="/dev/shm/i3_tx"
+
+if [ ! -f "$RX_TMP" ]; then
+    echo "$RX_CUR" > "$RX_TMP"
+    echo "$TX_CUR" > "$TX_TMP"
+    echo "⇣0K ⇡0K"
+    exit 0
+fi
+
+# Read previous traffic
+RX_PREV=$(cat "$RX_TMP")
+TX_PREV=$(cat "$TX_TMP")
+
+# Save current traffic for next second
+echo "$RX_CUR" > "$RX_TMP"
+echo "$TX_CUR" > "$TX_TMP"
+
+# Calculate speed (Difference)
+RX_DIFF=$((RX_CUR - RX_PREV))
+TX_DIFF=$((TX_CUR - TX_PREV))
+
+# Prevent negative glitches
+[ "$RX_DIFF" -lt 0 ] && RX_DIFF=0
+[ "$TX_DIFF" -lt 0 ] && TX_DIFF=0
+
+# Function to dynamically format bytes to KB or MB
+format_speed() {
+    local bytes=$1
+    local kb=$((bytes / 1024))
+    if [ "$kb" -ge 1024 ]; then
+        awk "BEGIN {printf \"%.1fM\", $kb / 1024}"
+    else
+        echo "${kb}K"
+    fi
+}
+
+RX_OUT=$(format_speed $RX_DIFF)
+TX_OUT=$(format_speed $TX_DIFF)
+
+# Display output
+echo "⇣$RX_OUT ⇡$TX_OUT"

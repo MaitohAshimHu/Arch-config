@@ -1,0 +1,24 @@
+# Secrets / credentials
+*.pem
+*.key
+*.p12
+*.pfx
+*.kdbx
+.env
+.env.*
+credentials*
+secrets*
+*token*
+*cookie*
+cookies.txt
+.ssh/
+.gnupg/
+
+# Browser/session data
+.config/google-chrome/
+.config/chromium/
+.config/BraveSoftware/
+
+# Caches and runtime data
+.cache/
+.local/share/

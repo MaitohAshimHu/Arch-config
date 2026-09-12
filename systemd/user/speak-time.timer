@@ -1,0 +1,10 @@
+[Unit]
+Description=Speak time every 30 minutes
+
+[Timer]
+OnCalendar=*-*-* *:00:00
+OnCalendar=*-*-* *:30:00
+Persistent=false
+
+[Install]
+WantedBy=timers.target

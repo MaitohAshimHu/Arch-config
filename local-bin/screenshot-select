@@ -1,0 +1,8 @@
+#!/bin/bash
+
+FILE="$HOME/Pictures/Screenshots/$(date +%Y-%m-%d-%H-%M-%S)-selection.png"
+
+if maim -s "$FILE"; then
+    xclip -selection clipboard -t image/png -i "$FILE"
+    notify-send -t 1200 "Screenshot copied" "Selection saved and ready to paste with Ctrl+V"
+fi

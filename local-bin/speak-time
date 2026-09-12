@@ -1,0 +1,19 @@
+#!/bin/bash
+
+HOUR=$(date '+%-I')
+MINUTE=$(date '+%M')
+AMPM=$(date '+%p')
+
+if [ "$MINUTE" = "00" ]; then
+    MESSAGE="It is $HOUR $AMPM."
+elif [ "$MINUTE" = "30" ]; then
+    MESSAGE="It is $HOUR thirty $AMPM."
+else
+    exit 0
+fi
+
+FILE="/tmp/current-time.mp3"
+
+gtts-cli "$MESSAGE" --lang en --output "$FILE"
+
+ffplay -nodisp -autoexit -loglevel quiet "$FILE"

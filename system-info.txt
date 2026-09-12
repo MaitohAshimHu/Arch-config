@@ -1,0 +1,65 @@
+Generated: Saturday 12 September 2026 01:39:22 PM IST
+
+Kernel:
+6.18.33-1-lts
+
+Desktop/session:
+XDG_CURRENT_DESKTOP=i3
+DESKTOP_SESSION=i3
+
+Power profiles:
+performance
+* performance:
+    CpuDriver:	amd_pstate
+    PlatformDriver:	platform_profile
+    Degraded:   no
+
+  balanced:
+    CpuDriver:	amd_pstate
+    PlatformDriver:	platform_profile
+
+  power-saver:
+    CpuDriver:	amd_pstate
+    PlatformDriver:	platform_profile
+
+Audio:
+PipeWire 'pipewire-0' [1.6.6, ahenkarii@BharyDANGEROUS, cookie:2230122017]
+ └─ Clients:
+        32. WirePlumber                         [1.6.6, ahenkarii@BharyDANGEROUS, pid:1194]
+        33. pipewire                            [1.6.6, ahenkarii@BharyDANGEROUS, pid:1195]
+        46. WirePlumber [export]                [1.6.6, ahenkarii@BharyDANGEROUS, pid:1194]
+        59. xdg-desktop-portal                  [1.6.6, ahenkarii@BharyDANGEROUS, pid:1513]
+        60. Blueman                             [1.6.6, ahenkarii@BharyDANGEROUS, pid:1156]
+        63. Brave input                         [1.6.6, ahenkarii@BharyDANGEROUS, pid:4959]
+        71. wpctl                               [1.6.6, ahenkarii@BharyDANGEROUS, pid:142473]
+
+Audio
+ ├─ Devices:
+ │      47. Ryzen HD Audio Controller           [alsa]
+ │  
+ ├─ Sinks:
+ │  *   54. Ryzen HD Audio Controller Analog Stereo [vol: 1.00]
+ │  
+ ├─ Sources:
+ │  *   55. Ryzen HD Audio Controller Analog Stereo [vol: 0.27]
+ │  
+ ├─ Filters:
+ │  
+ └─ Streams:
+
+Video
+ ├─ Devices:
+ │      34. Integrated Camera                   [v4l2]
+ │      45. Integrated Camera                   [v4l2]
+ │  
+ ├─ Sinks:
+ │  
+ ├─ Sources:
+ │  *   61. Integrated Camera (V4L2)           
+ │  
+ ├─ Filters:
+ │  
+ └─ Streams:
+
+Settings
+ └─ Default Configured Devices:
