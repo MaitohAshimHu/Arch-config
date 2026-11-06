@@ -22,3 +22,5 @@ cookies.txt
 # Caches and runtime data
 .cache/
 .local/share/
+local-bin/uv
+local-bin/uvx

@@ -1,33 +1,93 @@
-# My EndeavourOS Dotfiles
+# EndeavourOS + i3 Dotfiles
 
-Personal EndeavourOS + i3 configuration backup.
+My personal EndeavourOS + i3wm setup backup.
 
-## Included
+This repository is intended to restore my customized desktop setup after a fresh EndeavourOS installation or system crash.
 
-- i3 configuration and keybindings
+## What is backed up
+
+### i3
+- i3 configuration
+- i3 keybindings
 - i3blocks configuration
 - i3 helper scripts
-- Screenshot scripts (save + clipboard)
-- Spoken-time script
-- systemd user service/timer for spoken time
-- zsh configuration
-- `hiit.jpg` wallpaper
-- Pacman package list
-- AUR package list
-- Basic system/power/audio information
+- Power/performance controls
+- Volume and brightness controls
+- CPU/GPU temperature scripts
+- Battery and system information scripts
+- VPN and network scripts
+- Powermenu
+- Lock/blur configuration
 
-## Fresh-install restore
+### Screenshot system
 
-1. Install EndeavourOS and the packages listed in `packages-pacman.txt`.
-2. Install AUR packages listed in `packages-aur.txt`.
-3. Copy the backed-up configuration files into their corresponding locations.
-4. Make scripts executable:
-   `chmod +x ~/.local/bin/* ~/.config/i3/scripts/*`
-5. Reload i3:
-   `i3-msg reload`
-6. Reload user systemd:
-   `systemctl --user daemon-reload`
-7. Enable the spoken-time timer:
-   `systemctl --user enable --now speak-time.timer`
+The screenshot scripts are backed up in:
 
-This repository intentionally does not contain passwords, cookies, SSH private keys, or other credentials.
+`local-bin/`
+
+Included:
+
+- `screenshot-full`
+- `screenshot-window`
+- `screenshot-select`
+
+Screenshots are saved to:
+
+`~/Pictures/Screenshots/`
+
+and copied directly to the X clipboard so they can be pasted with:
+
+`Ctrl+V`
+
+### Spoken time
+
+The automatic time announcement is backed up:
+
+`local-bin/speak-time`
+
+Systemd files:
+
+`systemd/user/speak-time.service`
+
+`systemd/user/speak-time.timer`
+
+The timer announces the current time every 30 minutes.
+
+### Wallpaper
+
+My wallpaper is:
+
+`wallpaper/hiit.jpg`
+
+### Shell
+
+My Zsh configuration is backed up in:
+
+`zsh/.zshrc`
+
+### Packages
+
+Installed packages are recorded in:
+
+`packages-pacman.txt`
+
+AUR packages are recorded in:
+
+`packages-aur.txt`
+
+---
+
+# Fresh EndeavourOS Installation
+
+## 1. Install EndeavourOS
+
+Install EndeavourOS normally.
+
+During installation, install/use i3wm.
+
+After booting into the new system, open a terminal.
+
+## 2. Update the system
+
+```bash
+sudo pacman -Syu

@@ -1,4 +1,4 @@
-antigravity-ide
 brave-bin
 envycontrol
 ffuf
+google-chrome
